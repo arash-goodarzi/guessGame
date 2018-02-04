@@ -22,7 +22,6 @@
                 var pattern=[];
                 var mainPattern=['green','blue','red','yellow'];
 
-
                 function shuffle(array) {
                     var currentIndex = array.length, temporaryValue, randomIndex;
 
@@ -42,14 +41,15 @@
                 }
 
                 //create complex pattern
-                pattern1=shuffle(mainPattern);
-                pattern2=shuffle(mainPattern);
-                pattern3=shuffle(mainPattern);
-                pattern4=shuffle(mainPattern);
-                pattern[0]=pattern1[3];
-                pattern[1]=pattern2[2];
-                pattern[2]=pattern3[1];
-                pattern[3]=pattern4[0];              
+                // pattern1=shuffle(mainPattern);
+                // pattern2=shuffle(mainPattern);
+                // pattern3=shuffle(mainPattern);
+                // pattern4=shuffle(mainPattern);
+                // pattern[0]=pattern1[3];
+                // pattern[1]=pattern2[2];
+                // pattern[2]=pattern3[1];
+                // pattern[3]=pattern4[0];   
+                pattern = shuffle(mainPattern);       
 
                 function allowDrop(ev) {
                     ev.preventDefault();
@@ -789,6 +789,7 @@
                     }
                 });
                 function logicOfGame(box){
+                    debugger;
                     var resultOfthisRound=[];
 
                     //var verify=pattern.indexOf(box[0]);
