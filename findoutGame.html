@@ -1,0 +1,869 @@
+<!DOCTYPE HTML>
+    <html>
+
+        <head>
+            <title>Find out Game</title>
+
+            <!-- CDN source-->
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+            <!-- External source-->
+            <link rel="stylesheet" type="text/css" href="./findoutGame.css">
+            <script src="./findoutGame.js"></script>
+
+
+            <style></style>
+
+            <script></script>
+            <script>
+                var roundIndex=1;
+                var pattern=[];
+                var mainPattern=['green','blue','red','yellow'];
+
+
+                function shuffle(array) {
+                    var currentIndex = array.length, temporaryValue, randomIndex;
+
+                    // While there remain elements to shuffle...
+                    while (0 !== currentIndex) {
+
+                        // Pick a remaining element...
+                        randomIndex = Math.floor(Math.random() * currentIndex);
+                        currentIndex -= 1;
+
+                        // And swap it with the current element.
+                        temporaryValue = array[currentIndex];
+                        array[currentIndex] = array[randomIndex];
+                        array[randomIndex] = temporaryValue;
+                    }
+                return array;
+                }
+
+                //create complex pattern
+                pattern1=shuffle(mainPattern);
+                pattern2=shuffle(mainPattern);
+                pattern3=shuffle(mainPattern);
+                pattern4=shuffle(mainPattern);
+                pattern[0]=pattern1[3];
+                pattern[1]=pattern2[2];
+                pattern[2]=pattern3[1];
+                pattern[3]=pattern4[0];              
+
+                function allowDrop(ev) {
+                    ev.preventDefault();
+                }
+                
+                function drag(ev) {
+                    ev.dataTransfer.setData("text", ev.target.id);
+                }
+                
+                function drop(ev) {
+                    ev.preventDefault();
+                    var data = ev.dataTransfer.getData("text");
+                    ev.target.appendChild(document.getElementById(data));
+                    //createShape(ev);
+                }
+                //var indx=1;
+
+                    // var blueShapId=1;
+                    // var yellowShapId=1;
+                    // var redShapId=1;
+                    // var greenShapId=1;
+
+                    // var srcColor=['./images/button/blue.png',
+                    //             './images/button/yellow.png',
+                    //             './images/button/red.png',
+                    //             './images/button/green.png'];
+
+//                     function createShape(ev){
+
+// debugger;
+//                         //find which color
+//                         var txt=ev.srcElement.children[0].id;
+//                         var t=typeof(txt);
+//                         //var txt=JSON.stringify(ttt);
+//                         var start=txt.indexOf("#");
+//                         var finish=txt.indexOf('Shap');
+
+//                         var color=txt.substring(txt.indexOf("#")+1, txt.indexOf('Shap')+4);
+
+//                         //img#yellowShap0.buttonImage
+
+
+//                         var clone=$('#txt').clone();
+//                         clone.id='33';
+
+//                         var nameOf=txt.substring(start+1, finish)
+//                         var nameOfColor=nameOf.charAt(0).toUpperCase() + nameOf.slice(1);
+
+//                         var parent="parent"+nameOfColor+"Button1";
+//                         $('#parent').append(clone);
+//                         //parentBlueButton1
+//                         //document.getElementById('parent').appendChild(clone);
+
+
+
+//                         // var tempImage=document.createElement('img');
+//                         // tempImage.className='buttonImage';
+//                         // tempImage.draggable='true';
+//                         // // tempImage.ondragstart='ondragstart="drag(event)';
+//                         // tempImage.ondragstart=function(event){
+//                         //     drag(event);
+//                         // };
+
+
+
+//                         // if(color=='blueShap'){
+//                         //     tempImage.id='blueShap'+blueShapId;
+//                         //     blueShapId+=1;
+
+//                         //     tempImage.src=srcColor[0];
+
+//                         //     document.getElementById('parentBlueButton').appendChild(tempImage);
+//                         // }
+//                         // if(color=='yellowShap'){
+//                         //     tempImage.id='yellowShap'+yellowShapId;
+//                         //     yellowShapId+=1;
+
+//                         //     tempImage.src=srcColor[1];
+
+//                         //     document.getElementById('parentYellowButton').appendChild(tempImage);
+//                         // }
+//                         // if(color=='redShap'){
+//                         //     tempImage.id='redShap'+redShapId;
+//                         //     redShapId+=1;
+
+//                         //     tempImage.src=srcColor[2];
+
+//                         //     document.getElementById('parentRedButton').appendChild(tempImage);
+//                         // }
+//                         // if(color=='greenShap'){
+//                         //     tempImage.id='greenShap'+greenShapId;
+//                         //     greenShapId+=1;
+
+//                         //     tempImage.src=srcColor[3];
+
+//                         //     document.getElementById('parentGreenButton').appendChild(tempImage);
+//                         // }
+
+                        
+                        
+//                     }
+
+                    </script>
+        </head>
+        <body>     
+            <div class="container">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="page-header">
+                            <h1 class="">Find out Game</h1> 
+                            <img src="./images/logo/arashLogo.jpg" class="logo img-responsive float-right" /> 
+                            <p>This game was created by Arash</p>
+                        </div>
+                    </div>
+                    <div class="panel-body text-center">
+                        <!---->
+                        <div id="mainDiv" class="">
+                            <div class="row">
+                                <div class="col-4 bg-white  text-white"></div>
+                                <div id="questionTablue"  class="col-4 bg-warning text-white text-center">
+                                    <div class="row">
+                                        <div id="parentBlueButton" class="col-3 bg-white text-white">
+                                            <img id="question1" class="questions buttonImage" src="./images/others/questionMark.png" draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentYellowButton" class="col-3 bg-white text-white">
+                                            <img id="question2" class="questions buttonImage"  src="./images/others/questionMark.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentRedButton" class="col-3 bg-white text-white">
+                                            <img id="question3" class="questions buttonImage"  src="./images/others/questionMark.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentGreenButton" class="col-3 bg-white text-white">
+                                            <img id="question4" class="questions buttonImage"  src="./images/others/questionMark.png" draggable="true" ondragstart="drag(event)"/>                                 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-white  text-white">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 bg-white  text-white"></div>
+                                <div class="col-4 bg-warning text-white text-center">
+                                    <h1>Your choice</h1>
+                                </div>
+                                <div class="col-4 bg-primary text-white">
+                                    <h1>The Result</h1>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 bg-white  text-white">
+                                    <div class="row ">
+                                        <div id="parentBlueButton10" class="col-3 bg-white text-white">
+                                            <img id="blueShap10" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentYellowButton10" class="col-3 bg-white text-white">
+                                            <img id="yellowShap10" class="buttonImage"  src="./images/button/yellow.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentRedButton10" class="col-3 bg-white text-white">
+                                            <img id="redShap10" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentGreenButton10" class="col-3 bg-white text-white">
+                                            <img id="greenShap10" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-warning text-white text-center">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva10" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb10" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc10" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd10" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-primary text-white">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva10r" class="boxOfButton bg-dark rounded-circle" ></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb10r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc10r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd10r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 bg-white  text-white">
+                                    <div class="row ">
+                                        <div id="parentBlueButton9" class="col-3 bg-white text-white">
+                                            <img id="blueShap9" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentYellowButton9" class="col-3 bg-white text-white">
+                                            <img id="yellowShap9" class="buttonImage"  src="./images/button/yellow.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentRedButton9" class="col-3 bg-white text-white">
+                                            <img id="redShap9" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentGreenButton9" class="col-3 bg-white text-white">
+                                            <img id="greenShap9" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-warning text-white text-center">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva9" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb9" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc9" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd9" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-primary text-white">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva9r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb9r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc9r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd9r" class="boxOfButton bg-dark rounded-circle" ></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 bg-white  text-white">
+                                    <div class="row ">
+                                        <div id="parentBlueButton8" class="col-3 bg-white text-white">
+                                            <img id="blueShap8" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentYellowButton8" class="col-3 bg-white text-white">
+                                            <img id="yellowShap8" class="buttonImage"  src="./images/button/yellow.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentRedButton8" class="col-3 bg-white text-white">
+                                            <img id="redShap8" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentGreenButton8" class="col-3 bg-white text-white">
+                                            <img id="greenShap8" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-warning text-white text-center">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva8" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb8" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc8" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd8" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-primary text-white">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva8r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb8r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc8r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd8r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 bg-white  text-white">
+                                    <div class="row ">
+                                        <div id="parentBlueButton7" class="col-3 bg-white text-white">
+                                            <img id="blueShap7" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentYellowButton7" class="col-3 bg-white text-white">
+                                            <img id="yellowShap7" class="buttonImage"  src="./images/button/yellow.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentRedButton7" class="col-3 bg-white text-white">
+                                            <img id="redShap7" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentGreenButton7" class="col-3 bg-white text-white">
+                                            <img id="greenShap7" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-warning text-white text-center">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva7" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb7" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc7" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd7" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-primary text-white">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva7r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb7r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc7r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd7r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 bg-white  text-white">
+                                    <div class="row ">
+                                        <div id="parentBlueButton6" class="col-3 bg-white text-white">
+                                            <img id="blueShap6" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentYellowButton6" class="col-3 bg-white text-white">
+                                            <img id="yellowShap6" class="buttonImage"  src="./images/button/yellow.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentRedButton6" class="col-3 bg-white text-white">
+                                            <img id="redShap6" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentGreenButton6" class="col-3 bg-white text-white">
+                                            <img id="greenShap6" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-warning text-white text-center">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva6" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb6" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc6" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd6" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-primary text-white">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva6r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb6r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc6r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd6r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 bg-white  text-white">
+                                    <div class="row ">
+                                        <div id="parentBlueButton5" class="col-3 bg-white text-white">
+                                            <img id="blueShap5" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentYellowButton5" class="col-3 bg-white text-white">
+                                            <img id="yellowShap5" class="buttonImage"  src="./images/button/yellow.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentRedButton5" class="col-3 bg-white text-white">
+                                            <img id="redShap5" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentGreenButton5" class="col-3 bg-white text-white">
+                                            <img id="greenShap5" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-warning text-white text-center">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva5" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb5" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc5" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd5" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-primary text-white">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva5r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb5r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc5r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd5r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 bg-white  text-white">
+                                    <div class="row ">
+                                        <div id="parentBlueButton4" class="col-3 bg-white text-white">
+                                            <img id="blueShap4" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentYellowButton4" class="col-3 bg-white text-white">
+                                            <img id="yellowShap4" class="buttonImage"  src="./images/button/yellow.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentRedButton4" class="col-3 bg-white text-white">
+                                            <img id="redShap4" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentGreenButton4" class="col-3 bg-white text-white">
+                                            <img id="greenShap4" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-warning text-white text-center">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva4" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb4" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc4" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd4" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-primary text-white">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva4r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb4r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc4r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd4r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 bg-white  text-white">
+                                    <div class="row ">
+                                        <div id="parentBlueButton3" class="col-3 bg-white text-white">
+                                            <img id="blueShap3" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentYellowButton3" class="col-3 bg-white text-white">
+                                            <img id="yellowShap3" class="buttonImage"  src="./images/button/yellow.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentRedButton3" class="col-3 bg-white text-white">
+                                            <img id="redShap3" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentGreenButton3" class="col-3 bg-white text-white">
+                                            <img id="greenShap3" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-warning text-white text-center">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva3" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb3" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc3" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd3" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-primary text-white">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva3r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb3r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc3r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd3r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 bg-white  text-white">
+                                    <div class="row ">
+                                        <div id="parentBlueButton2" class="col-3 bg-white text-white">
+                                            <img id="blueShap2" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentYellowButton2" class="col-3 bg-white text-white">
+                                            <img id="yellowShap2" class="buttonImage"  src="./images/button/yellow.png" draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentRedButton2" class="col-3 bg-white text-white">
+                                            <img id="redShap2" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentGreenButton2" class="col-3 bg-white text-white">
+                                            <img id="greenShap2" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-warning text-white text-center">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva2" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb2" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc2" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd2" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-primary text-white">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva2r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb2r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc2r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd2r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 bg-inverse text-white text-center">
+                                    <div class="row ">
+                                        <div id="parentBlueButton1" class="col-3 bg-white text-white">
+                                            <img id="blueShap1" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentYellowButton1" class="col-3 bg-white text-white">
+                                            <img id="yellowShap1" class="buttonImage"  src="./images/button/yellow.png"   draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentRedButton1" class="col-3 bg-white text-white">
+                                            <img id="redShap1" class="buttonImage"  src="./images/button/red.png" draggable="true" ondragstart="drag(event)"/>
+                                        </div>
+                                        <div id="parentGreenButton1" class="col-3 bg-white text-white">
+                                            <img id="greenShap1" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-warning text-white text-center">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva1" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb1" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc1" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd1" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-4 bg-primary text-white">
+                                    <div class="row ">
+                                        <div class="col-3">
+                                            <div id="diva1r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divb1r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divc1r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                        <div class="col-3">
+                                            <div id="divd1r" class="boxOfButton bg-dark rounded-circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="commandDiv" class="row">
+                                
+                                <div class="col-4 bg-white  text-white">
+                                    <button class="btn btn-danger btn-lg btn-block" onclick="location.reload()">reset</button>
+                                </div>
+                                <div class="col-4 bg-white  text-white">
+                                    <button id="testGuess" type="button" class="btn bg-warning btn-lg btn-block font-weight-bold">Check</button>
+                                </div>
+                                <div class="col-4 bg-white  text-white">
+
+                                    <!-- Trigger the modal with a button -->
+                                    <button type="button" class="btn bg-primary btn-lg btn-block text-white" data-toggle="modal" data-target="#myModal">Read Tutorial</button>
+                    
+                                    <!-- Modal -->
+                                    <div id="myModal" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+                                            <!-- Modal content-->
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                    <h4 class="modal-title">Tutorial</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>This is a tutorial</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+
+                            </div>
+                        </div>
+                        <!---->
+                           
+                    </div>
+
+                </div>
+    
+<!--     
+                <div class="alert alert-success" id=messageDiv style="visibility:hidden">
+                    <strong>You win!</strong></div>
+    
+                                              
+                </div>  -->
+                    
+        </body>
+        <script>
+            (function(){
+
+
+
+
+                $('#testGuess').click(function(){
+
+                    //validation + take the color
+                    var divForValidationa='diva'+roundIndex.toString();
+                    var divForValidationb='divb'+roundIndex.toString();
+                    var divForValidationc='divc'+roundIndex.toString();
+                    var divForValidationd='divd'+roundIndex.toString();
+
+                    if (document.getElementById(divForValidationa).hasChildNodes()&&
+                    document.getElementById(divForValidationb).hasChildNodes()&&
+                    document.getElementById(divForValidationc).hasChildNodes()&&
+                    document.getElementById(divForValidationd).hasChildNodes()) {
+                        var box=[];
+
+                        var txt1=document.getElementById(divForValidationa).childNodes[0].id;
+                        var color=txt1.substring(txt1.indexOf("#"), txt1.indexOf('Shap'));
+                        box.push(color);
+
+                        txt1=document.getElementById(divForValidationb).childNodes[0].id;
+                        color=txt1.substring(txt1.indexOf("#"), txt1.indexOf('Shap'));
+                        box.push(color);
+
+                        txt1=document.getElementById(divForValidationc).childNodes[0].id;
+                        color=txt1.substring(txt1.indexOf("#"), txt1.indexOf('Shap'));
+                        box.push(color);
+
+                        txt1=document.getElementById(divForValidationd).childNodes[0].id;
+                        color=txt1.substring(txt1.indexOf("#"), txt1.indexOf('Shap'));
+                        box.push(color);
+
+                        logicOfGame(box);
+                        
+                    }else{
+                        alert("Please feel all placeholder");
+                    }
+                });
+                function logicOfGame(box){
+                    var resultOfthisRound=[];
+
+                    //var verify=pattern.indexOf(box[0]);
+                    for(var i=0;i<box.length;i++){
+                        var juge="black";
+                        for(var j=0;j<pattern.length;j++){
+                            if(box[i]==pattern[j]&&i==j){
+                                //white
+                                juge="white";
+                            }else if(box[i]==pattern[j]){
+                                //gray
+                                if(juge!="white"){juge="gray";}
+                            }else{
+                                //black
+                                //if(juge!="white"||juge!="gray"){juge="black";}
+                            }
+                        }
+                        //diva1r
+                        var idOfBoxByAlphabet;
+                        if(i==0){idOfBoxByAlphabet='a';resultOfthisRound.push(juge);}
+                        if(i==1){idOfBoxByAlphabet='b';resultOfthisRound.push(juge);}
+                        if(i==2){idOfBoxByAlphabet='c';resultOfthisRound.push(juge);}
+                        if(i==3){idOfBoxByAlphabet='d';resultOfthisRound.push(juge);}
+
+                        var idOfResult="#div"+idOfBoxByAlphabet+roundIndex+'r';
+
+                        if(juge=='white'){
+                            $(idOfResult).removeClass('bg-dark');
+                            $(idOfResult).addClass('bg-white');
+                        }else if(juge=='gray'){
+                            $(idOfResult).removeClass('bg-dark');
+                            $(idOfResult).addClass('bg-gray');
+                        }else{
+
+                        }
+
+
+                    }
+                    //for next round 
+                    roundIndex+=1;
+                    if(roundIndex>10){
+                        alert("you lost");
+                        $( "#testGuess" ).prop( "disabled", true );
+                        showTheResult();
+                    }
+
+                    //vadiation for winning
+                    if(!!resultOfthisRound.reduce(function(a, b){ return (a === b) ? a : NaN; })){
+                        alert("you win");
+                        //$('#mainDiv').disabled=true;
+                        $( "#testGuess" ).prop( "disabled", true );
+                        showTheResult();
+                        
+                    }
+
+                }
+
+                function showTheResult(){
+                    var q=0;
+                    for(var t=0;t<pattern.length;t++){
+                        
+                        var questions=$('#questionTablue img');
+                        if(pattern[t]=='blue'){questions[q].src='./images/button/blue.png';}
+                        if(pattern[t]=='red'){questions[q].src='./images/button/red.png';}
+                        if(pattern[t]=='yellow'){questions[q].src='./images/button/yellow.png';}
+                        if(pattern[t]=='green'){questions[q].src='./images/button/green.png';}
+                        q++;
+                    }
+                }
+
+            })();
+        </script>
+    </html>
+            
+            
+            
+            
+                    
