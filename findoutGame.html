@@ -8,19 +8,98 @@
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            
+            
+            
+
 
             <!-- External source-->
             <link rel="stylesheet" type="text/css" href="./findoutGame.css">
             <script src="./findoutGame.js"></script>
 
 
-            <style></style>
+            <style>
+.myClassDiv{
+    border: 2px solid greenyellow;
+    display: inline-block;
+}
 
-            <script></script>
+.findout{
+    border: 1px solid rgb(10, 243, 61);
+}
+
+h1{
+    display: inline-block
+}
+
+.buttonImage{
+    width: 50px;
+    height: 50px;
+    cursor:pointer;
+}
+
+#div1 {
+    width: 350px;
+    height: 70px;
+    padding: 10px;
+    border: 1px solid #aaaaaa;
+}
+
+.boxOfButton{
+    width: 50px;
+    height: 50px;
+}
+
+.row{
+    height:65px;
+}
+
+#commandDiv{
+    margin-top: 30px;
+}
+
+#mainDiv{
+    margin-top: 40px;
+}
+
+.bg-gray{
+    background-color: #C0C0C0;
+}
+
+.blue{
+    background-color: #0E0DFF;
+}
+
+.gold{
+    background-color: #FFC107
+}
+
+.margin15top{
+    margin-top: 15px;
+}
+
+.gainsboro{
+    background-color: #DCDCDC;
+
+}
+
+.vAlign{
+    align-items: center;
+}
+
+
+            </style>
+
+            <script>
+
+            </script>
             <script>
                 var roundIndex=1;
+
+                var numberOfTry=7;
                 var pattern=[];
                 var mainPattern=['green','blue','red','yellow'];
+
 
                 function shuffle(array) {
                     var currentIndex = array.length, temporaryValue, randomIndex;
@@ -37,19 +116,21 @@
                         array[currentIndex] = array[randomIndex];
                         array[randomIndex] = temporaryValue;
                     }
+
                 return array;
                 }
 
                 //create complex pattern
-                // pattern1=shuffle(mainPattern);
-                // pattern2=shuffle(mainPattern);
-                // pattern3=shuffle(mainPattern);
-                // pattern4=shuffle(mainPattern);
-                // pattern[0]=pattern1[3];
-                // pattern[1]=pattern2[2];
-                // pattern[2]=pattern3[1];
-                // pattern[3]=pattern4[0];   
-                pattern = shuffle(mainPattern);       
+                pattern1=shuffle(mainPattern);
+                pattern2=shuffle(mainPattern);
+                pattern3=shuffle(mainPattern);
+                pattern4=shuffle(mainPattern);
+                pattern[0]=pattern1[3];
+                pattern[1]=pattern2[2];
+                pattern[2]=pattern3[1];
+                pattern[3]=pattern4[0];
+
+                //pattern=['blue','yellow','red','blue'];               
 
                 function allowDrop(ev) {
                     ev.preventDefault();
@@ -65,7 +146,7 @@
                     ev.target.appendChild(document.getElementById(data));
                     //createShape(ev);
                 }
-                //var indx=1;
+                var indx=1;
 
                     // var blueShapId=1;
                     // var yellowShapId=1;
@@ -160,13 +241,13 @@
                     <div class="panel-heading">
                         <div class="page-header">
                             <h1 class="">Find out Game</h1> 
-                            <img src="./images/logo/arashLogo.jpg" class="logo img-responsive float-right" /> 
+                            <img id="logoimage" src="./images/logo/arashLogo.jpg" class="logo img-responsive float-right" /> 
                             <p>This game was created by Arash</p>
                         </div>
                     </div>
                     <div class="panel-body text-center">
                         <!---->
-                        <div id="mainDiv" class="">
+
                             <div class="row">
                                 <div class="col-4 bg-white  text-white"></div>
                                 <div id="questionTablue"  class="col-4 bg-warning text-white text-center">
@@ -188,34 +269,57 @@
                                 <div class="col-4 bg-white  text-white">
                                 </div>
                             </div>
-                            <div class="row">
+							<div class="row">
                                 <div class="col-4 bg-white  text-white"></div>
-                                <div class="col-4 bg-warning text-white text-center">
-                                    <h1>Your choice</h1>
+                                <div id="arrowDown"  class="col-4 bg-warning text-white text-center">
+                                    <div class="row">
+                                        <div id="parentArrow1" class="col-3 bg-white text-white">
+                                            <img id="arrow1" class="arrows buttonImage" src="./images/others/downArrow.png" />
+                                        </div>
+                                        <div id="parentArrow2" class="col-3 bg-white text-white">
+                                            <img id="arrow2" class="arrows buttonImage"  src="./images/others/downArrow.png" />
+                                        </div>
+                                        <div id="parentArrow3" class="col-3 bg-white text-white">
+                                            <img id="arrow3" class="arrows buttonImage"  src="./images/others/downArrow.png" />
+                                        </div>
+                                        <div id="parentArrow4" class="col-3 bg-white text-white">
+                                            <img id="arrow4" class="arrows buttonImage"  src="./images/others/downArrow.png" />                                 
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-4 bg-primary text-white">
-                                    <h1>The Result</h1>
+                                <div class="col-4 bg-white text-white">
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-4 bg-white  text-white">
-                                    <div class="row ">
-                                        <div id="parentBlueButton10" class="col-3 bg-white text-white">
+                            <div class="row vAlign">
+                                <div class="col-4 gold text-dark text-center">
+                                    <h3 class="font-italic">Pick From Here</h3>
+                                </div>
+                                <div class="col-4 blue text-white text-center">
+                                    <h3 class="font-italic">Your choice</h3>
+                                </div>
+                                <div class="col-4 gold text-dark text-center">
+                                    <h3 class="font-italic">The Result</h3>
+                                </div>
+                            </div>
+                            <!-- <div class="row margin15top">
+                                <div class="col-4 gainsboro gainsboro text-white">
+                                    <div class="row vAlign">
+                                        <div id="parentBlueButton10" class="col-3 text-white">
                                             <img id="blueShap10" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentYellowButton10" class="col-3 bg-white text-white">
+                                        <div id="parentYellowButton10" class="col-3 text-white">
                                             <img id="yellowShap10" class="buttonImage"  src="./images/button/yellow.png"  draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentRedButton10" class="col-3 bg-white text-white">
+                                        <div id="parentRedButton10" class="col-3 text-white">
                                             <img id="redShap10" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentGreenButton10" class="col-3 bg-white text-white">
+                                        <div id="parentGreenButton10" class="col-3 text-white">
                                             <img id="greenShap10" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-4 bg-warning text-white text-center">
-                                    <div class="row ">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva10" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                                         </div>
@@ -230,8 +334,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4 bg-primary text-white">
-                                    <div class="row ">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva10r" class="boxOfButton bg-dark rounded-circle" ></div>
                                         </div>
@@ -248,24 +352,24 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-4 bg-white  text-white">
-                                    <div class="row ">
-                                        <div id="parentBlueButton9" class="col-3 bg-white text-white">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
+                                        <div id="parentBlueButton9" class="col-3 gainsboro text-white">
                                             <img id="blueShap9" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentYellowButton9" class="col-3 bg-white text-white">
+                                        <div id="parentYellowButton9" class="col-3 gainsboro text-white">
                                             <img id="yellowShap9" class="buttonImage"  src="./images/button/yellow.png"  draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentRedButton9" class="col-3 bg-white text-white">
+                                        <div id="parentRedButton9" class="col-3 gainsboro text-white">
                                             <img id="redShap9" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentGreenButton9" class="col-3 bg-white text-white">
+                                        <div id="parentGreenButton9" class="col-3 gainsboro text-white">
                                             <img id="greenShap9" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-4 bg-warning text-white text-center">
-                                    <div class="row ">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva9" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                                         </div>
@@ -280,8 +384,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4 bg-primary text-white">
-                                    <div class="row ">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva9r" class="boxOfButton bg-dark rounded-circle"></div>
                                         </div>
@@ -298,24 +402,24 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-4 bg-white  text-white">
-                                    <div class="row ">
-                                        <div id="parentBlueButton8" class="col-3 bg-white text-white">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
+                                        <div id="parentBlueButton8" class="col-3 gainsboro text-white">
                                             <img id="blueShap8" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentYellowButton8" class="col-3 bg-white text-white">
+                                        <div id="parentYellowButton8" class="col-3 gainsboro text-white">
                                             <img id="yellowShap8" class="buttonImage"  src="./images/button/yellow.png"  draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentRedButton8" class="col-3 bg-white text-white">
+                                        <div id="parentRedButton8" class="col-3 gainsboro text-white">
                                             <img id="redShap8" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentGreenButton8" class="col-3 bg-white text-white">
+                                        <div id="parentGreenButton8" class="col-3 gainsboro text-white">
                                             <img id="greenShap8" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-4 bg-warning text-white text-center">
-                                    <div class="row ">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva8" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                                         </div>
@@ -330,8 +434,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4 bg-primary text-white">
-                                    <div class="row ">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva8r" class="boxOfButton bg-dark rounded-circle"></div>
                                         </div>
@@ -346,26 +450,26 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="row">
-                                <div class="col-4 bg-white  text-white">
-                                    <div class="row ">
-                                        <div id="parentBlueButton7" class="col-3 bg-white text-white">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
+                                        <div id="parentBlueButton7" class="col-3 gainsboro text-white">
                                             <img id="blueShap7" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentYellowButton7" class="col-3 bg-white text-white">
+                                        <div id="parentYellowButton7" class="col-3 gainsboro text-white">
                                             <img id="yellowShap7" class="buttonImage"  src="./images/button/yellow.png"  draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentRedButton7" class="col-3 bg-white text-white">
+                                        <div id="parentRedButton7" class="col-3 gainsboro text-white">
                                             <img id="redShap7" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentGreenButton7" class="col-3 bg-white text-white">
+                                        <div id="parentGreenButton7" class="col-3 gainsboro text-white">
                                             <img id="greenShap7" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-4 bg-warning text-white text-center">
-                                    <div class="row ">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva7" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                                         </div>
@@ -380,8 +484,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4 bg-primary text-white">
-                                    <div class="row ">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva7r" class="boxOfButton bg-dark rounded-circle"></div>
                                         </div>
@@ -398,24 +502,24 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-4 bg-white  text-white">
-                                    <div class="row ">
-                                        <div id="parentBlueButton6" class="col-3 bg-white text-white">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
+                                        <div id="parentBlueButton6" class="col-3 gainsboro text-white">
                                             <img id="blueShap6" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentYellowButton6" class="col-3 bg-white text-white">
+                                        <div id="parentYellowButton6" class="col-3 gainsboro text-white">
                                             <img id="yellowShap6" class="buttonImage"  src="./images/button/yellow.png"  draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentRedButton6" class="col-3 bg-white text-white">
+                                        <div id="parentRedButton6" class="col-3 gainsboro text-white">
                                             <img id="redShap6" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentGreenButton6" class="col-3 bg-white text-white">
+                                        <div id="parentGreenButton6" class="col-3 gainsboro text-white">
                                             <img id="greenShap6" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-4 bg-warning text-white text-center">
-                                    <div class="row ">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva6" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                                         </div>
@@ -430,8 +534,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4 bg-primary text-white">
-                                    <div class="row ">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva6r" class="boxOfButton bg-dark rounded-circle"></div>
                                         </div>
@@ -448,24 +552,24 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-4 bg-white  text-white">
-                                    <div class="row ">
-                                        <div id="parentBlueButton5" class="col-3 bg-white text-white">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
+                                        <div id="parentBlueButton5" class="col-3 gainsboro text-white">
                                             <img id="blueShap5" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentYellowButton5" class="col-3 bg-white text-white">
+                                        <div id="parentYellowButton5" class="col-3 gainsboro text-white">
                                             <img id="yellowShap5" class="buttonImage"  src="./images/button/yellow.png"  draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentRedButton5" class="col-3 bg-white text-white">
+                                        <div id="parentRedButton5" class="col-3 gainsboro text-white">
                                             <img id="redShap5" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentGreenButton5" class="col-3 bg-white text-white">
+                                        <div id="parentGreenButton5" class="col-3 gainsboro text-white">
                                             <img id="greenShap5" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-4 bg-warning text-white text-center">
-                                    <div class="row ">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva5" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                                         </div>
@@ -480,8 +584,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4 bg-primary text-white">
-                                    <div class="row ">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva5r" class="boxOfButton bg-dark rounded-circle"></div>
                                         </div>
@@ -498,24 +602,24 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-4 bg-white  text-white">
-                                    <div class="row ">
-                                        <div id="parentBlueButton4" class="col-3 bg-white text-white">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
+                                        <div id="parentBlueButton4" class="col-3 gainsboro text-white">
                                             <img id="blueShap4" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentYellowButton4" class="col-3 bg-white text-white">
+                                        <div id="parentYellowButton4" class="col-3 gainsboro text-white">
                                             <img id="yellowShap4" class="buttonImage"  src="./images/button/yellow.png"  draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentRedButton4" class="col-3 bg-white text-white">
+                                        <div id="parentRedButton4" class="col-3 gainsboro text-white">
                                             <img id="redShap4" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentGreenButton4" class="col-3 bg-white text-white">
+                                        <div id="parentGreenButton4" class="col-3 gainsboro text-white">
                                             <img id="greenShap4" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-4 bg-warning text-white text-center">
-                                    <div class="row ">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva4" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                                         </div>
@@ -530,8 +634,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4 bg-primary text-white">
-                                    <div class="row ">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva4r" class="boxOfButton bg-dark rounded-circle"></div>
                                         </div>
@@ -548,24 +652,24 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-4 bg-white  text-white">
-                                    <div class="row ">
-                                        <div id="parentBlueButton3" class="col-3 bg-white text-white">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
+                                        <div id="parentBlueButton3" class="col-3 gainsboro text-white">
                                             <img id="blueShap3" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentYellowButton3" class="col-3 bg-white text-white">
+                                        <div id="parentYellowButton3" class="col-3 gainsboro text-white">
                                             <img id="yellowShap3" class="buttonImage"  src="./images/button/yellow.png"  draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentRedButton3" class="col-3 bg-white text-white">
+                                        <div id="parentRedButton3" class="col-3 gainsboro text-white">
                                             <img id="redShap3" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentGreenButton3" class="col-3 bg-white text-white">
+                                        <div id="parentGreenButton3" class="col-3 gainsboro text-white">
                                             <img id="greenShap3" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-4 bg-warning text-white text-center">
-                                    <div class="row ">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva3" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                                         </div>
@@ -580,8 +684,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4 bg-primary text-white">
-                                    <div class="row ">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva3r" class="boxOfButton bg-dark rounded-circle"></div>
                                         </div>
@@ -598,24 +702,24 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-4 bg-white  text-white">
-                                    <div class="row ">
-                                        <div id="parentBlueButton2" class="col-3 bg-white text-white">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
+                                        <div id="parentBlueButton2" class="col-3 gainsboro text-white">
                                             <img id="blueShap2" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentYellowButton2" class="col-3 bg-white text-white">
+                                        <div id="parentYellowButton2" class="col-3 gainsboro text-white">
                                             <img id="yellowShap2" class="buttonImage"  src="./images/button/yellow.png" draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentRedButton2" class="col-3 bg-white text-white">
+                                        <div id="parentRedButton2" class="col-3 gainsboro text-white">
                                             <img id="redShap2" class="buttonImage"  src="./images/button/red.png"  draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentGreenButton2" class="col-3 bg-white text-white">
+                                        <div id="parentGreenButton2" class="col-3 gainsboro text-white">
                                             <img id="greenShap2" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-4 bg-warning text-white text-center">
-                                    <div class="row ">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva2" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                                         </div>
@@ -630,8 +734,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4 bg-primary text-white">
-                                    <div class="row ">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva2r" class="boxOfButton bg-dark rounded-circle"></div>
                                         </div>
@@ -648,24 +752,24 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-4 bg-inverse text-white text-center">
-                                    <div class="row ">
-                                        <div id="parentBlueButton1" class="col-3 bg-white text-white">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
+                                        <div id="parentBlueButton1" class="col-3 gainsboro text-white">
                                             <img id="blueShap1" class="buttonImage" src="./images/button/blue.png" draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentYellowButton1" class="col-3 bg-white text-white">
+                                        <div id="parentYellowButton1" class="col-3 gainsboro text-white">
                                             <img id="yellowShap1" class="buttonImage"  src="./images/button/yellow.png"   draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentRedButton1" class="col-3 bg-white text-white">
+                                        <div id="parentRedButton1" class="col-3 gainsboro text-white">
                                             <img id="redShap1" class="buttonImage"  src="./images/button/red.png" draggable="true" ondragstart="drag(event)"/>
                                         </div>
-                                        <div id="parentGreenButton1" class="col-3 bg-white text-white">
+                                        <div id="parentGreenButton1" class="col-3 gainsboro text-white">
                                             <img id="greenShap1" class="buttonImage"  src="./images/button/green.png" draggable="true" ondragstart="drag(event)"/>                                 
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-4 bg-warning text-white text-center">
-                                    <div class="row ">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva1" class="boxOfButton bg-dark rounded-circle" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                                         </div>
@@ -680,8 +784,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4 bg-primary text-white">
-                                    <div class="row ">
+                                <div class="col-4 gainsboro text-white">
+                                    <div class="row vAlign">
                                         <div class="col-3">
                                             <div id="diva1r" class="boxOfButton bg-dark rounded-circle"></div>
                                         </div>
@@ -699,13 +803,13 @@
                             </div>
                             <div id="commandDiv" class="row">
                                 
-                                <div class="col-4 bg-white  text-white">
+                                <div class="col-2 bg-white  text-white">
                                     <button class="btn btn-danger btn-lg btn-block" onclick="location.reload()">reset</button>
                                 </div>
-                                <div class="col-4 bg-white  text-white">
+                                <div class="col-8 bg-white  text-white">
                                     <button id="testGuess" type="button" class="btn bg-warning btn-lg btn-block font-weight-bold">Check</button>
                                 </div>
-                                <div class="col-4 bg-white  text-white">
+                                <div class="col-2 bg-white  text-white">
 
                                     <!-- Trigger the modal with a button -->
                                     <button type="button" class="btn bg-primary btn-lg btn-block text-white" data-toggle="modal" data-target="#myModal">Read Tutorial</button>
@@ -731,7 +835,7 @@
                                 </div>
 
                             </div>
-                        </div>
+
                         <!---->
                            
                     </div>
@@ -830,7 +934,7 @@
                     }
                     //for next round 
                     roundIndex+=1;
-                    if(roundIndex>10){
+                    if(roundIndex>numberOfTry){
                         alert("you lost");
                         $( "#testGuess" ).prop( "disabled", true );
                         showTheResult();

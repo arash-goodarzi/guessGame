@@ -1,62 +1,28 @@
-    :root{
-        --theme-color:#000000;
-    }
+:root{
+    --theme-color:#000000;
+}
 
-    .myClassDiv{
-        border: 2px solid greenyellow;
-        display: inline-block;
-    }
+.myClassDiv{
+    border: 2px solid greenyellow;
+    display: inline-block;
+}
 
-    .findout{
-        border: 1px solid rgb(10, 243, 61);
-    }
+.findout{
+    border: 1px solid rgb(10, 243, 61);
+}
 
-    h1{
-        display: inline-block
-    }
+h1{
+    display: inline-block
+}
 
-    #mainDiv{
-        background: var(--theme-color);
-    }
+#mainDiv{
+    background: var(--theme-color);
+}
 
-    .swatches span{
-        display: inline-block;
-        width: 20px;
-        height: 20px;
-        margin: 10px;
-        cursor: pointer;
-    }
-    
-    .buttonImage{
-        width: 50px;
-        height: 50px;
-        cursor:move;
-    }
-
-    #div1 {
-        width: 350px;
-        height: 70px;
-        padding: 10px;
-        border: 1px solid #aaaaaa;
-    }
-
-    .boxOfButton{
-        width: 50px;
-        height: 50px;
-    }
-
-    .row{
-        height:55px;
-    }
-
-    #commandDiv{
-        margin-top: 30px;
-    }
-
-    #mainDiv{
-        margin-top: 40px;
-    }
-
-    .bg-gray{
-        background-color: #C0C0C0;
-    }
+.swatches span{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    cursor: pointer;
+}
